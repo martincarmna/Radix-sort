@@ -55,6 +55,18 @@ public class RadixSortReal {
             int digito = (arr[i] / exp) % 10;
             conteo[digito]++;
         }
+    // Acumulados
+        for (int i = 1; i < 10; i++) {
+            conteo[i] += conteo[i - 1];
+        }
+
+        // Construir arreglo ordenado
+        for (int i = n - 
+            1; i >= 0; i--) {
+            int digito = (arr[i] / exp) % 10;
+            salida[conteo[digito] - 1] = arr[i];
+            conteo[digito]--;
+        }
     }
 
 
