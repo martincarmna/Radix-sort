@@ -5,7 +5,7 @@ public class RadixSortReal {
 
     public static void main(String[] args) {
 
-        // ← Ajustado a tu ruta
+        // Ruta ajustada por ti
         String archivoEntrada = "C:\\archivos\\numeros.txt";
         String archivoSalida = "C:\\archivos\\ordenados.txt";
 
@@ -64,19 +64,42 @@ public class RadixSortReal {
     }
 
     // ------------------------------------
-    // Radix Sort Real (decimales)
+    // Radix Sort Real (soporta negativos)
     // ------------------------------------
     public static void radixSortReal(double[] arr, int decimales) {
 
         int factor = (int) Math.pow(10, decimales);
 
         int[] enteros = new int[arr.length];
+        int minimo = 0;
+
+        // Convertir a enteros y registrar el mínimo
         for (int i = 0; i < arr.length; i++) {
             enteros[i] = (int) (arr[i] * factor);
+            if (enteros[i] < minimo)
+                minimo = enteros[i];
         }
 
+        // Si hay negativos, desplazamos todo
+        int offset = Math.abs(minimo);
+
+        if (offset > 0) {
+            for (int i = 0; i < enteros.length; i++) {
+                enteros[i] += offset;
+            }
+        }
+
+        // Ordenar como Radix normal
         radixSort(enteros);
 
+        // Regresar al valor original
+        if (offset > 0) {
+            for (int i = 0; i < enteros.length; i++) {
+                enteros[i] -= offset;
+            }
+        }
+
+        // Convertir de vuelta a double
         for (int i = 0; i < arr.length; i++) {
             arr[i] = (double) enteros[i] / factor;
         }
