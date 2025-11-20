@@ -43,6 +43,18 @@ public class RadixSortReal {
         for (int exp = 1; max / exp > 0; exp *= 10) {
             countingSort(arr, exp);
         }
+     // Counting Sort por dígito
+    public static void countingSort(int[] arr, int exp) {
+
+        int n = arr.length;
+        int[] salida = new int[n];
+        int[] conteo = new int[10];
+
+        // Contar apariciones del dígito
+        for (int i = 0; i < n; i++) {
+            int digito = (arr[i] / exp) % 10;
+            conteo[digito]++;
+        }
     }
 
 
