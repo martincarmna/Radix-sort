@@ -67,6 +67,27 @@ public class RadixSortReal {
             salida[conteo[digito] - 1] = arr[i];
             conteo[digito]--;
         }
+            // Copiar
+        for (int i = 0; i < n; i++) {
+            arr[i] = salida[i];
+        }
+    }
+
+    // Obtener número máximo
+    public static int obtenerMax(int[] arr) {
+        int max = arr[0];
+        for (int num : arr) {
+            if (num > max) max = num;
+        }
+        return max;
+    }
+     // Imprimir
+    public static void imprimir(double[] arr) {
+        for (double n : arr) {
+            System.out.print(n + " ");
+        }
+        System.out.println();
+    }
     }
 
 
