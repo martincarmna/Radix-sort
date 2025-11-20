@@ -30,9 +30,7 @@ public class RadixSortReal {
         }
     }
 
-    // ------------------------------------
     // Persistencia: Leer archivo
-    // ------------------------------------
     public static double[] leerNumeros(String nombreArchivo) throws IOException {
         BufferedReader br = new BufferedReader(new FileReader(nombreArchivo));
         ArrayList<Double> lista = new ArrayList<>();
@@ -51,9 +49,8 @@ public class RadixSortReal {
         return arr;
     }
 
-    // ------------------------------------
+    
     // Persistencia: Guardar archivo
-    // ------------------------------------
     public static void guardarNumeros(String nombreArchivo, double[] arr) throws IOException {
         BufferedWriter bw = new BufferedWriter(new FileWriter(nombreArchivo));
 
@@ -63,9 +60,8 @@ public class RadixSortReal {
         bw.close();
     }
 
-    // ------------------------------------
+    
     // Radix Sort Real (soporta negativos)
-    // ------------------------------------
     public static void radixSortReal(double[] arr, int decimales) {
 
         int factor = (int) Math.pow(10, decimales);
@@ -105,9 +101,7 @@ public class RadixSortReal {
         }
     }
 
-    // ------------------------------------
     // Radix Sort entero estándar
-    // ------------------------------------
     public static void radixSort(int[] arr) {
         int max = obtenerMax(arr);
 
