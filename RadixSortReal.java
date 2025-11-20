@@ -4,26 +4,26 @@ import java.util.ArrayList;
 public class RadixSortReal {
 
     public static void main(String[] args) {
-        String archivoEntrada = "numeros.txt";
-        String archivoSalida = "ordenados.txt";
+
+        // ← Ajustado a tu ruta
+        String archivoEntrada = "C:\\archivos\\numeros.txt";
+        String archivoSalida = "C:\\archivos\\ordenados.txt";
 
         try {
-            // Leer números desde archivo
             double[] numeros = leerNumeros(archivoEntrada);
 
             System.out.println("Números originales:");
             imprimir(numeros);
 
-            // Ordenar con Radix Sort real
-            radixSortReal(numeros, 3);
+            radixSortReal(numeros, 3); // precisión de 3 decimales
 
             System.out.println("\nNúmeros ordenados:");
             imprimir(numeros);
 
-            // Guardar en archivo
             guardarNumeros(archivoSalida, numeros);
 
-            System.out.println("\nArchivo '" + archivoSalida + "' generado correctamente.");
+            System.out.println("\nArchivo guardado correctamente en:");
+            System.out.println(archivoSalida);
 
         } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
@@ -64,7 +64,7 @@ public class RadixSortReal {
     }
 
     // ------------------------------------
-    // Radix Sort Real (para decimales)
+    // Radix Sort Real (decimales)
     // ------------------------------------
     public static void radixSortReal(double[] arr, int decimales) {
 
@@ -77,14 +77,13 @@ public class RadixSortReal {
 
         radixSort(enteros);
 
-        // Regresar a reales
         for (int i = 0; i < arr.length; i++) {
             arr[i] = (double) enteros[i] / factor;
         }
     }
 
     // ------------------------------------
-    // Radix Sort entero
+    // Radix Sort entero estándar
     // ------------------------------------
     public static void radixSort(int[] arr) {
         int max = obtenerMax(arr);
@@ -100,44 +99,34 @@ public class RadixSortReal {
         int[] salida = new int[n];
         int[] conteo = new int[10];
 
-        // Contar dígitos
         for (int i = 0; i < n; i++) {
             int digito = (arr[i] / exp) % 10;
             conteo[digito]++;
         }
 
-        // Acumulado
         for (int i = 1; i < 10; i++) {
             conteo[i] += conteo[i - 1];
         }
 
-        // Ordenar
         for (int i = n - 1; i >= 0; i--) {
             int digito = (arr[i] / exp) % 10;
             salida[conteo[digito] - 1] = arr[i];
             conteo[digito]--;
         }
 
-        // Copiar
         for (int i = 0; i < n; i++) {
             arr[i] = salida[i];
         }
     }
 
-    // Máximo
     public static int obtenerMax(int[] arr) {
         int max = arr[0];
-        for (int num : arr) {
-            if (num > max) max = num;
-        }
+        for (int num : arr) if (num > max) max = num;
         return max;
     }
 
-    // Imprimir
     public static void imprimir(double[] arr) {
-        for (double n : arr) {
-            System.out.print(n + " ");
-        }
+        for (double n : arr) System.out.print(n + " ");
         System.out.println();
     }
 }
